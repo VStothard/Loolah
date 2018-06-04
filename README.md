@@ -1,4 +1,4 @@
-# phoebe-blog
+# phoebe-website
 
 > My premium Nuxt.js project
 
