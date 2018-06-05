@@ -7,14 +7,12 @@
       :excerpt="post.previewText"
       :thumbnailImage="post.thumbnailUrl"
       :id="post.id"
-      :category="post.category" 
-      :date="post.date"
       class="inline-block p-4"
       >
-        <PostInfo 
+        <!-- <PostInfo 
           :category="post.category"
           :date="post.date"
-        />
+        /> -->
         <PostHeadline
           :title="post.title"
           :previewText="post.previewText"
@@ -35,57 +33,76 @@ export default {
     PostInfo,
     PostHeadline
   },
-  data() {
-    return {
-      posts: [
-        {
-          title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-          previewText: "This will be awesome, don't miss it!",
-          thumbnailUrl:
-            "https://source.unsplash.com/random",
-          id: "P01",
-          category: 'Beauty',
-          date: '25.05.18'
-        },
-        {
-          title: "Amet, consectetur adipiscing elit",
-          previewText: "This will be awesome, don't miss it!",
-          thumbnailUrl:
-            "https://source.unsplash.com/random",
-          id: "P02",
-          category: 'Tech',
-          date: '25.05.18'
-        },
-        {
-          title: "Ipsum dolor sit amet, consectetur adipiscing",
-          previewText: "This will be awesome, don't miss it!",
-          thumbnailUrl:
-            "https://source.unsplash.com/random",
-          id: "P03",
-          category: 'Art',
-          date: '25.05.18'
-        },
-        {
-          title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-          previewText: "This will be awesome, don't miss it!",
-          thumbnailUrl:
-            "https://source.unsplash.com/random",
-          id: "P04",
-          category: 'Culture',
-          date: '25.05.18'
-        },
-        {
-          title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-          previewText: "This will be awesome, don't miss it!",
-          thumbnailUrl:
-            "https://source.unsplash.com/random",
-          id: "P05",
-          category: 'History',
-          date: '25.05.18'
-        }
-      ]
-    };
+  asyncData(context) {
+    return context.app.$storyapi.get('cdn/stories', {
+      version: "draft",
+      starts_with: "blog/"
+    }).then(res => {
+      console.log(res.data.stories);
+      return {
+        posts: res.data.stories.map(bp => {
+          return {
+            id: bp.slug,
+            title: bp.content.title,
+            thumbnailUrl: bp.content.thumbnail,
+            previewText: bp.content.description,
+
+          }
+        })
+      }
+    });
   }
+  // data() {
+    // return {
+    //   posts: [
+    //     {
+    //       title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    //       previewText: "This will be awesome, don't miss it!",
+    //       thumbnailUrl:
+    //         "https://source.unsplash.com/random",
+    //       id: "P01",
+    //       category: 'Beauty',
+    //       date: '25.05.18'
+    //     },
+    //     {
+    //       title: "Amet, consectetur adipiscing elit",
+    //       previewText: "This will be awesome, don't miss it!",
+    //       thumbnailUrl:
+    //         "https://source.unsplash.com/random",
+    //       id: "P02",
+    //       category: 'Tech',
+    //       date: '25.05.18'
+    //     },
+    //     {
+    //       title: "Ipsum dolor sit amet, consectetur adipiscing",
+    //       previewText: "This will be awesome, don't miss it!",
+    //       thumbnailUrl:
+    //         "https://source.unsplash.com/random",
+    //       id: "P03",
+    //       category: 'Art',
+    //       date: '25.05.18'
+    //     },
+    //     {
+    //       title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    //       previewText: "This will be awesome, don't miss it!",
+    //       thumbnailUrl:
+    //         "https://source.unsplash.com/random",
+    //       id: "P04",
+    //       category: 'Culture',
+    //       date: '25.05.18'
+    //     },
+    //     {
+    //       title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    //       previewText: "This will be awesome, don't miss it!",
+    //       thumbnailUrl:
+    //         "https://source.unsplash.com/random",
+    //       id: "P05",
+    //       category: 'History',
+    //       date: '25.05.18'
+    //     }
+    //   ]
+    // };
+  // }
 };
 </script>
 
