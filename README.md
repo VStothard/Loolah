@@ -1,4 +1,4 @@
-# phoebe-website
+# nuxt-and-storyblok-website
 
 > My premium Nuxt.js project
 
