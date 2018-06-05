@@ -1,13 +1,15 @@
 <template>
   <nuxt-link
-    :to="id">
+    :to="id"
+    class="w-full sm:w-1/2 md:w-1/3 no-underline text-black hover:text-grey">
     <article class="post-preview">
       <div
         :style="{backgroundImage: 'url(' + thumbnailImage + ')'}"
-        class="post-preview-thumbnail"></div>
-      <div class="post-preview-content">
-        <h1>{{ title }}</h1>
-        <p>{{ excerpt }}</p>
+        class="w-full h-64 bg-cover mb-4"></div>
+      <div class="text-center">
+        <!-- PostInfo (category / date) -->
+        <!-- PostHeadline (category / date) -->
+        <slot></slot>
       </div>
     </article>
   </nuxt-link>
@@ -16,14 +18,6 @@
 <script>
 export default {
   props: {
-    title: {
-      type: String,
-      required: true
-    },
-    excerpt: {
-      type: String,
-      required: true
-    },
     thumbnailImage: {
       type: String,
       required: true
@@ -33,5 +27,5 @@ export default {
       required: true
     }
   }
-};
+}
 </script>

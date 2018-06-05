@@ -1,37 +1,87 @@
 <template>
-  <section id="posts">
+  <section id="posts" class="container flex flex-wrap mx-auto">
     <PostPreview
       v-for="post in posts"
       :key="post.id"
       :title="post.title"
       :excerpt="post.previewText"
       :thumbnailImage="post.thumbnailUrl"
-      :id="post.id" />
+      :id="post.id"
+      :category="post.category" 
+      :date="post.date"
+      class="inline-block p-4"
+      >
+        <PostInfo 
+          :category="post.category"
+          :date="post.date"
+        />
+        <PostHeadline
+          :title="post.title"
+          :previewText="post.previewText"
+          />
+      </PostPreview>
   </section>
 </template>
 
 <script>
-import PostPreview from "@/components/Blog/PostPreview";
+
+import PostPreview from "@/components/Blog/PostPreview"
+import PostInfo from '@/components/Blog/PostInfo'
+import PostHeadline from '@/components/Blog/PostHeadline'
+
 export default {
   components: {
-    PostPreview
+    PostPreview,
+    PostInfo,
+    PostHeadline
   },
   data() {
     return {
       posts: [
         {
-          title: "A New Beginning",
+          title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
           previewText: "This will be awesome, don't miss it!",
           thumbnailUrl:
-            "http://www.healthyfood.co.uk/wp-content/uploads/2015/01/Cherry-tomato-bocc-olive-basil-pasta.jpg",
-          id: "a-new-beginning"
+            "https://source.unsplash.com/random",
+          id: "P01",
+          category: 'Beauty',
+          date: '25.05.18'
         },
         {
-          title: "A Second Beginning",
+          title: "Amet, consectetur adipiscing elit",
           previewText: "This will be awesome, don't miss it!",
           thumbnailUrl:
-            "http://www.healthyfood.co.uk/wp-content/uploads/2015/01/Cherry-tomato-bocc-olive-basil-pasta.jpg",
-          id: "a-second-beginning"
+            "https://source.unsplash.com/random",
+          id: "P02",
+          category: 'Tech',
+          date: '25.05.18'
+        },
+        {
+          title: "Ipsum dolor sit amet, consectetur adipiscing",
+          previewText: "This will be awesome, don't miss it!",
+          thumbnailUrl:
+            "https://source.unsplash.com/random",
+          id: "P03",
+          category: 'Art',
+          date: '25.05.18'
+        },
+        {
+          title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+          previewText: "This will be awesome, don't miss it!",
+          thumbnailUrl:
+            "https://source.unsplash.com/random",
+          id: "P04",
+          category: 'Culture',
+          date: '25.05.18'
+        },
+        {
+          title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+          previewText: "This will be awesome, don't miss it!",
+          thumbnailUrl:
+            "https://source.unsplash.com/random",
+          id: "P05",
+          category: 'History',
+          date: '25.05.18'
         }
       ]
     };
@@ -40,6 +90,7 @@ export default {
 </script>
 
 <style>
+
 * {
   box-sizing: border-box;
 }
