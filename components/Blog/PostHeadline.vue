@@ -1,7 +1,5 @@
 <template>
     <div>
-        <!-- <h2 class="text-xl my-4">{{ title.toUpperCase() }}</h2>
-        <p class="text-xs">{{ excerpt.toUpperCase() }}</p> -->
         <h2 class="text-xl my-4">{{ title.toUpperCase() }}</h2>
         <p class="text-xs">{{ previewText.toUpperCase() }}</p>
     </div>

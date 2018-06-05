@@ -18,12 +18,13 @@
         <PostHeadline
           :title="post.title"
           :previewText="post.previewText"
-          ></PostHeadline>
+          />
       </PostPreview>
   </section>
 </template>
 
 <script>
+
 import PostPreview from "@/components/Blog/PostPreview"
 import PostInfo from '@/components/Blog/PostInfo'
 import PostHeadline from '@/components/Blog/PostHeadline'
@@ -89,6 +90,7 @@ export default {
 </script>
 
 <style>
+
 * {
   box-sizing: border-box;
 }
