@@ -1,5 +1,5 @@
 <template>
-  <section id="posts" class="border border-blue container flex flex-wrap mx-auto">
+  <section id="posts" class="container flex flex-wrap mx-auto">
     <PostPreview
       v-for="post in posts"
       :key="post.id"
@@ -9,16 +9,30 @@
       :id="post.id"
       :category="post.category" 
       :date="post.date"
-      class="border border-black inline-block p-4"
-      />
+      class="inline-block p-4"
+      >
+        <PostInfo 
+          :category="post.category"
+          :date="post.date"
+        />
+        <PostHeadline
+          :title="post.title"
+          :previewText="post.previewText"
+          ></PostHeadline>
+      </PostPreview>
   </section>
 </template>
 
 <script>
-import PostPreview from "@/components/Blog/PostPreview";
+import PostPreview from "@/components/Blog/PostPreview"
+import PostInfo from '@/components/Blog/PostInfo'
+import PostHeadline from '@/components/Blog/PostHeadline'
+
 export default {
   components: {
-    PostPreview
+    PostPreview,
+    PostInfo,
+    PostHeadline
   },
   data() {
     return {
