@@ -31,10 +31,10 @@ export default {
   },
   asyncData(context) {
     return context.app.$storyapi.get('cdn/stories', {
-      version: process.env.NODE_ENV == "production" ? "production" : "draft",
+      version: process.env.NODE_ENV == "production" ? "published" : "draft",
       starts_with: "blog/"
     }).then(res => {
-      console.log(1000, res.data);
+      // console.log(1000, res.data);
       return {
         // blok: res.data.stories.content,
         posts: res.data.stories.map(bp => {
