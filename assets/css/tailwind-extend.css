@@ -1,0 +1,25 @@
+/* BODY */
+* {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+/* FLEXBOX  */
+
+.flex-2 {
+    flex-grow: 2;
+}
+
+.flex-3 {
+    flex-grow: 3;
+}
+
+/* SPACING */
+
+.give-me-space {
+    margin-bottom: 40px;
+}
