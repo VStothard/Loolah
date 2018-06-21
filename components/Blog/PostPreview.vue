@@ -1,18 +1,18 @@
 <template>
-  <nuxt-link
-    :to="'/blog/' + id"
-    class="w-full sm:w-1/2 md:w-1/3 no-underline text-black hover:text-grey">
-    <article class="post-preview">
-      <div
-        :style="{backgroundImage: 'url(' + thumbnailImage + ')'}"
-        class="w-full h-64 bg-cover mb-4"></div>
-      <div class="text-center">
-        <!-- PostInfo (category / date) -->
-        <!-- PostHeadline (category / date) -->
-        <slot></slot>
-      </div>
-    </article>
-  </nuxt-link>
+  <div class="w-full md:w-1/3 even-padding-2 mb-4">
+    <nuxt-link
+      :to="'/blog/' + id">
+      <article>
+        <div
+          :style="{backgroundImage: 'url(' + thumbnailImage + ')'}"
+          class="w-full h-96 sm:h-64 md:h-96"
+          ></div>
+        <div>
+          <slot></slot>
+        </div>
+      </article>
+    </nuxt-link>
+  </div>
 </template>
 
 <script>

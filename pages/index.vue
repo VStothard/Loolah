@@ -4,7 +4,7 @@
       <ImageWithText />
     </section>
     
-    <section id="posts" class="container flex flex-wrap mx-auto give-me-space">
+    <section id="posts" class="border border-red container flex flex-wrap mx-auto give-me-space">
       <PostPreview
         v-for="post in posts"
         :key="post.id"
