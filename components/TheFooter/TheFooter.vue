@@ -8,7 +8,7 @@
                 <label>Email <input type="email" name="email" /></label>
             </p>
             <p>
-                <button type="submit">Send</button>
+                <button type="submit">Send ME</button>
             </p>
         </form>
     </div>
