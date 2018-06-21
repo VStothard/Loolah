@@ -1,6 +1,6 @@
 <template>
   <nuxt-link
-    :to="id"
+    :to="'/blog/' + id"
     class="w-full sm:w-1/2 md:w-1/3 no-underline text-black hover:text-grey">
     <article class="post-preview">
       <div
