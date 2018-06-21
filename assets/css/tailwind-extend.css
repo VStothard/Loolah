@@ -1,0 +1,51 @@
+/* BODY */
+* {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+/* FLEXBOX  */
+
+.flex-2 {
+    flex-grow: 2;
+}
+
+.flex-3 {
+    flex-grow: 3;
+}
+
+/* SPACING */
+
+.give-me-space {
+    margin-bottom: 40px;
+}
+
+/* GRID PADDING */
+
+@media screen and (min-width: 768px) {
+    .even-padding-2:nth-child(3n + 2) {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+    
+    .even-padding-2:nth-child(3n + 3),
+    .even-padding-2:first-child {
+        padding-right: 0.5rem;
+    }
+    
+    .even-padding-2:nth-child(3n + 1),
+    .even-padding-2:first-child {
+        padding-left: 0.5rem;
+        padding-right: 0;
+    }
+}
+
+/* HEIGHTS */ 
+
+.h-96 {
+    height: 24rem;
+}

@@ -1,4 +1,5 @@
 const pkg = require('./package')
+const axios = require('axios') 
 
 module.exports = {
   mode: 'universal',
@@ -14,7 +15,8 @@ module.exports = {
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Montserrat:300,600' }
     ]
   },
 
@@ -27,7 +29,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/css/tailwind.css'
+    '~/assets/css/tailwind.css',
+    '~/assets/css/tailwind-extend.css',
   ],
 
   /*
@@ -41,8 +44,25 @@ module.exports = {
   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    ['storyblok-nuxt', {accessToken: 'wCDBXlDYWduTeDO4S7THnAtt', cacheProvider: 'memory'}]
+    ['storyblok-nuxt', {accessToken: process.env.NODE_ENV == 'production' ? 'iaO2VirIsWeyqrN7Jr4h4wtt' : 'wCDBXlDYWduTeDO4S7THnAtt', cacheProvider: 'memory'}]
   ],
+
+  generate: {
+    //fetch dynamic routes from storyblok
+    routes: function () {
+      return axios.get('https://api.storyblok.com/v1/cdn/stories?version=published&token=iaO2VirIsWeyqrN7Jr4h4wtt&starts_with=blog&cv=' + Math.floor(Date.now/1e3))
+      .then(res => {
+        const blogPosts = res.data.stories.map(bp => bp.full_slug);
+        return [
+          '/',
+          '/blog',
+          '/about',
+          ...blogPosts
+        ]
+      });
+    }
+  },
+
   /*
   ** Axios module configuration
   */
