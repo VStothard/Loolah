@@ -1,7 +1,11 @@
 <template>
-    <div class="flex container mx-auto border">
-        <div class="w-1/2">
-            <form name="contact" @submit.prevent="handleSubmit" netlify-honeypot="bot-field" method="post" netlify>
+    <div class="flex flex-row-reverse flex-wrap flex-middle container mx-auto mb-6">
+        <div class="w-full sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2 text-center">
+            <img src="https://source.unsplash.com/random/480x450" alt="img">
+            <!-- <p>Hey {{userData.name}}</p> -->
+        </div>
+        <div class="w-full sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2">
+            <form name="contact" @submit.prevent="handleSubmit" netlify-honeypot="bot-field" method="post" netlify class="max-w-sm mx-auto">
                 <!-- div form step one -->
                 <div v-if="step === 1">
                     <!--netlify hidden fields-->
@@ -13,33 +17,22 @@
                     </div>
                     
                     <!-- form fields -->
-                    <div>
-                        <label class="uppercase" for="sub-name">Your name</label>
-                        <input 
-                            id="sub-name" 
-                            class="border-t-0 border-l-0 border-r-0 border-b-2"
-                            v-model="userData.name" 
-                            v-validate="'required|alpha_spaces'" 
-                            name="name" type="text">
-                        <span class="bg-black text-white px-2 text-sm ">{{ errors.first('name') }}</span>
+                    <div class="mb-6 font-semibold">
+                        <p>My cat is a rubbish conversationalist, so let's keep in touch?</p>
                     </div>
-
-                    <div>
-                        <label class="uppercase" for="sub-email">Your email</label>
-                        <input id="sub-email" v-model="userData.email" v-validate="'required|email'" name="email" type="text">
-                        <span class="bg-black text-white text-sm ">{{ errors.first('email') }}</span>
+                    <div class="mb-8">
+                        <TextInput id="sub-name" name="name" type="text" v-model="userData.name" placeholder="YOUR NAME" />
+                        <TextInput id="sub-email" name="email" type="text" v-model="userData.email" placeholder="YOUR EMAIL"/>
                     </div>
                     
-                    <input class="form-button" type="submit" value="Send message" />
+                    <input class="form-button bg-black text-white p-4 border-none hover:bg-grey-darkest cursor-pointer" type="submit" value="Send message" />
+
                 </div>
                 <div v-if="step === 2">
-                    <p>Thanks {{userData.name}}! You'll hear from me soon x</p>
+                    <p>Thanks {{userData.name}}!</p>
+                    <p>You'll hear from me soon x</p>
                 </div>
             </form>
-        </div>
-        <div class="w-1/2">
-            <img src="https://source.unsplash.com/random/200x300" alt="img">
-            <p>Hi {{userData.name}}, your email is {{userData.email}}</p>
         </div>
     </div>
 </template> 
@@ -48,9 +41,15 @@
 import Vue from "vue";
 import VeeValidate from 'vee-validate';
 
+import TextInput from '@/components/SubForm/parts/TextInput';
+
+
 Vue.use(VeeValidate);
 
 export default {
+    components: {
+        TextInput
+    },
     inject: {
         $validator: "$validator"
     },
@@ -61,7 +60,8 @@ export default {
                 email: ''
             },
             step: 1,
-            disable: false
+            disable: false,
+            testID: "identity"
         }
     },
     methods: {
@@ -87,3 +87,10 @@ export default {
     
 }
 </script>
+
+
+<style scoped>
+    input:focus {
+        outline: none;
+    }
+</style>
