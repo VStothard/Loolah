@@ -65,7 +65,7 @@ Vue.use(VeeValidate);
 
 export default {
     components: {
-        TextInput
+        // TextInput
     },
     inject: {
         $validator: "$validator"
