@@ -5,7 +5,7 @@
             <!-- <p>Hey {{userData.name}}</p> -->
         </div>
         <div class="w-full sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2">
-            <form name="contact" @submit.prevent="handleSubmit" netlify-honeypot="bot-field" method="post" netlify class="max-w-sm mx-auto">
+            <form name="subscribe" @submit.prevent="handleSubmit" netlify-honeypot="bot-field" method="POST" netlify class="max-w-sm mx-auto">
                 <!-- div form step one -->
                 <div v-if="step === 1">
                     <!--netlify hidden fields-->
