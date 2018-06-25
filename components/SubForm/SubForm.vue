@@ -21,11 +21,28 @@
                         <p>My cat is a rubbish conversationalist, so let's keep in touch?</p>
                     </div>
                     <div class="mb-8">
-                        <TextInput id="sub-name" name="name" type="text" v-model="userData.name" placeholder="YOUR NAME" />
-                        <TextInput id="sub-email" name="email" type="text" v-model="userData.email" placeholder="YOUR EMAIL"/>
+                        <div class="mb-4">
+                            <input 
+                                id="sub-name" name="name" type="text" placeholder="YOUR NAME" 
+                                v-validate="'required|alpha_spaces'" 
+                                class="border-t-0 border-l-0 border-r-0 border border-grey-darkest w-full py-4"
+                            >
+                            <span class="bg-black text-white text-sm ">{{ errors.first('name') }}</span>
+                        </div>
+                        <div class="mb-4">
+                            <input 
+                                id="sub-email" name="email" type="text" placeholder="YOUR EMAIL" 
+                                v-validate="'required|email'" 
+                                class="border-t-0 border-l-0 border-r-0 border border-grey-darkest w-full py-4"
+                            >
+                            <span class="bg-black text-white text-sm ">{{ errors.first('email') }}</span>
+                        </div>
                     </div>
                     
-                    <input class="form-button bg-black text-white p-4 border-none hover:bg-grey-darkest cursor-pointer" type="submit" value="Send message" />
+                    <input 
+                        class="form-button bg-black text-white p-4 border-none hover:bg-grey-darkest cursor-pointer" 
+                        type="submit" 
+                        value="OKAY FINE." />
 
                 </div>
                 <div v-if="step === 2">
@@ -41,7 +58,7 @@
 import Vue from "vue";
 import VeeValidate from 'vee-validate';
 
-import TextInput from '@/components/SubForm/parts/TextInput';
+// import TextInput from '@/components/SubForm/parts/TextInput';
 
 
 Vue.use(VeeValidate);
