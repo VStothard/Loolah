@@ -1,9 +1,9 @@
 <template>
   <div>
-    <!-- <TheNavigation />
+    <TheNavigation />
     <main>
       <nuxt/>
-    </main> -->
+    </main>
     <TheFooter />
   </div>
 </template>
