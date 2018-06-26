@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="give-me-space">
         <div class="flex flex-wrap max-w-lg mx-auto" v-bind:class="{ 'flex-row-reverse': flip }" >
             <div class="w-full md:w-1/2 pr-4">
                 <img src="https://source.unsplash.com/random/400x450" class="w-full">

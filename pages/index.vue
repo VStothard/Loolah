@@ -6,7 +6,7 @@
     
     <section id="posts" class="container flex flex-wrap mx-auto give-me-space">
       <post-grid></post-grid>
-      <general-button></general-button>
+      <general-button button-text="VIEW MORE" button-link="www.google.com"></general-button>
     </section>
   </div>
 </template>

@@ -1,5 +1,6 @@
 /* BODY */
 * {
+    box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
     letter-spacing: 2px;
 }

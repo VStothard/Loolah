@@ -1,6 +1,6 @@
 <template>
-    <div class="mx-auto block mb-6">
-        <a href="#" class="no-underline bg-black text-white p-4 border-none hover:bg-grey-darkest cursor-pointer">VIEW MORE</a>
+    <div class="bg-black hover:bg-grey-darkest cursor-pointer p-4 mx-auto block give-me-space">
+        <a :href="buttonLink" class="no-underline text-white border-none">{{buttonText}}</a>
     </div>
 </template>
 
@@ -8,6 +8,10 @@
 export default {
     props: {
         buttonText: {
+            type: String,
+            required: true
+        },
+        buttonLink: {
             type: String,
             required: true
         }
