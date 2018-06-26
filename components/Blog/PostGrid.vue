@@ -1,9 +1,9 @@
 <template>
     <div class="flex flex-wrap justify-between">
         <div v-for="post in posts" :key="post" class="w-full md:w-1/2 lg:w-1/3 max-w-md px-4 mb-6 text-center">
-            <img :src="post.thumbnail" :alt="thumbnailAlt" class="w-full">
-            <p>{{post.category.toUpperCase()}}</p>
-            <h2>{{post.title.toUpperCase()}}</h2>
+            <img :src="post.thumbnail" :alt="thumbnailAlt" class="w-full mb-4">
+            <p class="text-xs mb-4">{{post.category.toUpperCase()}}</p>
+            <h2 class="text-md">{{post.title.toUpperCase()}}</h2>
             <!-- <p>{{post.preview}}</p> -->
         </div>
     </div>
