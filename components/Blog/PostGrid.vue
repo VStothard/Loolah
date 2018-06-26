@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-wrap justify-between">
+    <div class="flex flex-wrap justify-between mb-6">
         <div v-for="post in posts" :key="post" class="w-full md:w-1/2 lg:w-1/3 max-w-md px-4 mb-6 text-center">
             <img :src="post.thumbnail" :alt="thumbnailAlt" class="w-full mb-4">
             <p class="text-xs mb-4">{{post.category.toUpperCase()}}</p>
