@@ -42,26 +42,7 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: [
-    // Doc: https://github.com/nuxt-community/axios-module#usage
-    ['storyblok-nuxt', {accessToken: process.env.NODE_ENV == 'production' ? 'iaO2VirIsWeyqrN7Jr4h4wtt' : 'wCDBXlDYWduTeDO4S7THnAtt', cacheProvider: 'memory'}]
-  ],
-
-  generate: {
-    //fetch dynamic routes from storyblok
-    routes: function () {
-      return axios.get('https://api.storyblok.com/v1/cdn/stories?version=published&token=iaO2VirIsWeyqrN7Jr4h4wtt&starts_with=blog&cv=' + Math.floor(Date.now/1e3))
-      .then(res => {
-        const blogPosts = res.data.stories.map(bp => bp.full_slug);
-        return [
-          '/',
-          '/blog',
-          '/about',
-          ...blogPosts
-        ]
-      });
-    }
-  },
+  
 
   /*
   ** Axios module configuration
