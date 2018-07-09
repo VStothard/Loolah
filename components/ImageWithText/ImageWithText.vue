@@ -22,5 +22,4 @@ export default {
 }
 
 //todo: 
-// - link flip in storyblok
 </script>
