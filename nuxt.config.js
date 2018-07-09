@@ -1,5 +1,6 @@
 const pkg = require('./package')
 const axios = require('axios') 
+const config = require('./.contentful.json')
 
 module.exports = {
   mode: 'universal',
@@ -33,6 +34,16 @@ module.exports = {
     '~/assets/css/tailwind-extend.css',
   ],
 
+  /**
+   * contentful
+   */
+  env: {
+    CTF_SPACE_ID: config.CTF_SPACE_ID,
+    CTF_CDA_ACCESS_TOKEN: config.CTF_CDA_ACCESS_TOKEN,
+    CTF_PERSON_ID: config.CTF_PERSON_ID,
+    CTF_BLOG_POST_TYPE_ID: config.CTF_BLOG_POST_TYPE_ID
+  },
+
   /*
   ** Plugins to load before mounting the App
   */
@@ -42,26 +53,7 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: [
-    // Doc: https://github.com/nuxt-community/axios-module#usage
-    ['storyblok-nuxt', {accessToken: process.env.NODE_ENV == 'production' ? 'iaO2VirIsWeyqrN7Jr4h4wtt' : 'wCDBXlDYWduTeDO4S7THnAtt', cacheProvider: 'memory'}]
-  ],
-
-  generate: {
-    //fetch dynamic routes from storyblok
-    routes: function () {
-      return axios.get('https://api.storyblok.com/v1/cdn/stories?version=published&token=iaO2VirIsWeyqrN7Jr4h4wtt&starts_with=blog&cv=' + Math.floor(Date.now/1e3))
-      .then(res => {
-        const blogPosts = res.data.stories.map(bp => bp.full_slug);
-        return [
-          '/',
-          '/blog',
-          '/about',
-          ...blogPosts
-        ]
-      });
-    }
-  },
+  
 
   /*
   ** Axios module configuration

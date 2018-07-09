@@ -1,28 +1,42 @@
 <template>
-    <section id="about-page" v-editable="blok">
-        <h1>{{title}}</h1>
-        <p>{{content}}</p>
-    </section>
+  <div>
+    <!-- render data of the person -->
+    <h1>{{ person.fields.name }}</h1>
+    <!-- render blog posts -->
+    <ul>
+      <li v-for="post in posts" :key="post">
+        {{ post.fields.title }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
-export default {
-    asyncData(context) {
-        return context.app.$storyapi.get('cdn/stories/about', {
-            version: process.env.NODE_ENV == "production" ? "published" : "draft"
-        }).then(res => {
-            return {
-                blok: res.data.story.content,
-                title: res.data.story.content.title,
-                content: res.data.story.content.content,
-            }
+  import {createClient} from '~/plugins/contentful.js'
+
+  const client = createClient()
+
+  export default {
+    // `env` is available in the context object
+    asyncData ({env}) {
+      return Promise.all([
+        // fetch the owner of the blog
+        client.getEntries({
+          'sys.id': env.CTF_PERSON_ID
+        }),
+        // fetch all blog posts sorted by creation date
+        client.getEntries({
+          'content_type': env.CTF_BLOG_POST_TYPE_ID,
+          order: '-sys.createdAt'
         })
-    },
-    mounted() {
-        this.$storyblok.init();
-        this.$storyblok.on('change', () => {
-            location.reload(true);
-        })
+      ]).then(([entries, posts]) => {
+        // return data that should be available
+        // in the template
+        return {
+          person: entries.items[0],
+          posts: posts.items
+        }
+      }).catch(console.error)
     }
-}
+  }
 </script>
